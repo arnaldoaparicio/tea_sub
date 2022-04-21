@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+customer1 = Customer.create!(first_name: 'Jon', last_name: 'Doe', email: 'jon@mail.com', address: '12 Main St.')
+customer2 = Customer.create!(first_name: 'Jane', last_name: 'Doe', email: 'jane@mail.com', address: '21 6th St.')
+
+subscription1 = customer1.subscriptions.create!(title: 'Creator Tier', price: 100, status: true)
+subscription2 = customer1.subscriptions.create!(title: 'Mint Tier', price: 200, status: false)
+
+tea1 = Tea.create!(title: 'Peach', description: 'Peach tea leaves', temperature: 90, brew_time: 100)
+tea2 = Tea.create!(title: 'Mint', description: 'Mint tea leaves', temperature: 90, brew_time: 100)
+
+subscription1.teas << tea1
+subscription2.teas << tea2
