@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Subscriptions API' do
   it 'gets a customers subscriptions' do
     customer1 = Customer.create!(first_name: 'Jon', last_name: 'Doe', email: 'jon@mail.com', address: '12 Main St.')
-    subscription1 = Subscription.create!(title: 'Top Tier', price: 100, status: 0, customer_id: customer1.id)
+    subscription1 = Subscription.create!(title: 'Top Tier', price: 100, status: 0, frequency: 2, customer_id: customer1.id)
+    subscription2 = Subscription.create!(title: 'Gold Tier', price: 500, status: 1, frequency: 0, customer_id: customer1.id)
+
 
     tea1 = Tea.create(title: 'Peach', description: 'Peach tea leaves', temperature: 90, brew_time: 100)
 
@@ -17,6 +19,21 @@ RSpec.describe 'Subscriptions API' do
     expect(customer_subscriptions[:data][0][:attributes]).to have_key(:title)
     expect(customer_subscriptions[:data][0][:attributes]).to have_key(:price)
     expect(customer_subscriptions[:data][0][:attributes]).to have_key(:status)
+    expect(customer_subscriptions[:data][0][:attributes]).to have_key(:frequency)
+    expect(customer_subscriptions[:data][0][:attributes][:title]).to eq('Top Tier')
+    expect(customer_subscriptions[:data][0][:attributes][:price]).to eq(100)
+    expect(customer_subscriptions[:data][0][:attributes][:status]).to eq('active')
+    expect(customer_subscriptions[:data][0][:attributes][:frequency]).to eq('yearly')
+
+
+    expect(customer_subscriptions[:data][1][:attributes]).to have_key(:title)
+    expect(customer_subscriptions[:data][1][:attributes]).to have_key(:price)
+    expect(customer_subscriptions[:data][1][:attributes]).to have_key(:status)
+    expect(customer_subscriptions[:data][1][:attributes]).to have_key(:frequency)
+    expect(customer_subscriptions[:data][1][:attributes][:title]).to eq('Gold Tier')
+    expect(customer_subscriptions[:data][1][:attributes][:price]).to eq(500)
+    expect(customer_subscriptions[:data][1][:attributes][:status]).to eq('inactive')
+    expect(customer_subscriptions[:data][1][:attributes][:frequency]).to eq('weekly')
   end
 
   it 'cancels a customers subscription' do
