@@ -30,6 +30,8 @@ This database utilizes enums, which are attributes where the values map to integ
 
 
 ## Available API Endpoints
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/600b21b42f34b92fafa7?action=collection%2Fimport)
+
 | http verb | name | description
 | --- | --- | --- |
 | GET | /customers/:customer_id/subscriptions | Returns a specific customer's subscriptions |
