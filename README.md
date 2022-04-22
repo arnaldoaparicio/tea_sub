@@ -1,5 +1,4 @@
 # Tea Subscription
-***
 Tea Subscription is a Rails Backend API available for a frontend client to consume. The frontend client has access to three API endpoints.
 
 - Being able to subscribe a customer to a tea subscription.
@@ -19,6 +18,15 @@ Tea Subscription is a Rails Backend API available for a frontend client to consu
 5. If errors occur, check for proper installation and versions of ```bundler```, ```ruby```, and ```rails```
 6. Set up the database locally with ```$ rails db:{drop,create,migrate,seed}```
 7. In your terminal, start the server ```$ rails s -p 3000```
+
+## Enum references
+This database utilizes enums, which are attributes where the values map to integers in the database and can be queried by name. The ```subscriptions``` table utilizes enums for ```status``` and ```frequency```.
+
+### Subscription enums
+| attributes | 0 | 1 | 2 |
+| --- | --- | --- | --- |
+| frequency | weekly | monthly | yearly |
+| status | active | inactive | |
 
 
 ## Available API Endpoints
