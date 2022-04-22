@@ -4,5 +4,7 @@ class Subscription < ApplicationRecord
   has_many :teas, through: :tea_subscriptions
   validates_presence_of :title
   validates_presence_of :price
-  validates_presence_of :status, allow_blank: true
+  validates_presence_of :status
+
+  enum status: ['active', 'inactive']
 end
